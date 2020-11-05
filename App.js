@@ -5,8 +5,26 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import LoadAssets from "./assets/components/LoadAssets";
 
 const Stack = createStackNavigator();
+
+const StackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Request" component={RequestScreen} />
+      <Stack.Screen name="Results" component={ResultsScreen} />
+      <Stack.Screen name="Policy" component={PolicyScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const fonts = {
+  "SFProText-Bold": require("./assets/fonts/SFProText-Bold.ttf"),
+  "SFProText-Regular": require("./assets/fonts/SFProText-Regular.ttf"),
+  "SFProText-Semibold": require("./assets/fonts/SFProText-Semibold.ttf"),
+};
 
 const PolicyScreen = ({ navigation }) => {
   return (
@@ -62,15 +80,21 @@ const HomeScreen = ({ navigation }) => {
 
 const Tab = createBottomTabNavigator();
 
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Request" component={RequestScreen} />
+      <Tab.Screen name="Policy" component={PolicyScreen} />
+    </Tab.Navigator>
+  );
+};
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Request" component={RequestScreen} />
-        <Tab.Screen name="Policy" component={PolicyScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <LoadAssets {...{ fonts }}>
+      <StackNavigator />
+    </LoadAssets>
   );
 }
 
