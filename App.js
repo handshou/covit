@@ -1,11 +1,12 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import LoadAssets from "./assets/components/LoadAssets";
+import { LoadAssets } from "./assets/components";
+import { Button } from "./assets/components";
 
 const Stack = createStackNavigator();
 
@@ -30,7 +31,12 @@ const PolicyScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Policy</Text>
-      <Button title="Go back" onPress={() => navigation.goBack()}></Button>
+      <Button
+        label="Go back"
+        variant="primary"
+        title="Go back"
+        onPress={() => navigation.goBack()}
+      ></Button>
       <StatusBar style="auto" />
     </View>
   );
@@ -59,18 +65,10 @@ const ResultsScreen = ({ navigation }) => {
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>HomeScreen</Text>
-
+      <Text style={styles.title}>HomeScreen</Text>
       <Button
-        title="Results"
-        onPress={() => navigation.navigate("Results")}
-      ></Button>
-      <Button
-        title="Request"
-        onPress={() => navigation.navigate("Request")}
-      ></Button>
-      <Button
-        title="Policy"
+        label="Policy"
+        variant="primary"
         onPress={() => navigation.navigate("Policy")}
       ></Button>
       <StatusBar style="auto" />
@@ -104,5 +102,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  title: {
+    fontSize: 50,
+    fontFamily: "SFProText-Regular",
   },
 });
